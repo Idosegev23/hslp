@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homestyler - הפתרון המושלם לתכנון ועיצוב פנים בתלת-ממד</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #2C5282;
+            --secondary-color: #4299E1;
+            --accent-color: #805AD5;
+            --bg-color: #F7FAFC;
+            --text-color: #2D3748;
+            --gradient: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: var(--gradient);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=2000') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        header .content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1, h2, h3 {
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin: 3rem 0 2rem;
+        }
+        
+        .intro-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: -60px 20px 40px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .advantage-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .advantage-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        
+        .pricing-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .pricing-card {
+            border: 2px solid var(--primary-color);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .pricing-card:hover {
+            transform: scale(1.03);
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 60px 0;
+            background: var(--gradient);
+            color: white;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .cta-button {
+            background-color: white;
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            background-color: var(--accent-color);
+            color: white;
+        }
+        
+        .target-audience {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .audience-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .audience-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .audience-card i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .about-instructor {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .instructor-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            object-fit: cover;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .instructor-info {
+            flex: 1;
+        }
+        
+        .instructor-info h2 {
+            text-align: right;
+            margin-top: 0;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .logo {
+            max-width: 300px;
+            height: auto;
+            margin-bottom: 30px;
+        }
+        
+        @media (max-width: 768px) {
+            header {
+                padding: 60px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .intro-section {
+                margin: -40px 10px 30px;
+                padding: 30px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .cta-button {
+                width: 100%;
+            }
+            
+            .about-instructor {
+                flex-direction: column;
+                text-align: center;
+                padding: 30px;
+            }
+            
+            .instructor-image {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+            
+            .instructor-info h2 {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="content">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png" alt="לוגו" class="logo">
+            <h1>Homestyler - הפתרון המושלם לתכנון ועיצוב פנים בתלת-ממד</h1>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="intro-section" data-aos="fade-up">
+            <p><strong>Homestyler</strong> היא פלטפורמת עיצוב פנים מקיפה המשלבת טכנולוגיות מתקדמות, ממשק אינטואיטיבי וכלים מקצועיים ליצירת פרויקטים מרשימים ומדויקים. עם מגוון תכונות רחב, Homestyler מאפשרת לכל משתמש – מעצבים מקצועיים ועד חובבי עיצוב – לתכנן חללים בצורה המתקדמת והמקצועית ביותר.</p>
+        </div>
+
+        <h2>יכולות עיקריות</h2>
+        <div class="features-section">
+            <div class="feature-card" data-aos="fade-up">
+                <i class="fas fa-cube"></i>
+                <h3>תכנון ועיצוב בתלת-ממד</h3>
+                <ul>
+                    <li>יצירת תוכניות מפורטות של קומה, מבנים מורכבים, ותכנוני רב-קומתיים</li>
+                    <li>ייבוא קבצים בפורמט DWG או תמונות להפיכתן לתוכניות תלת-ממדיות</li>
+                    <li>כלים מתקדמים לשרטוט קירות, מחיצות ודלתות בהתאמה אישית</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-couch"></i>
+                <h3>ספריית עיצוב עשירה</h3>
+                <ul>
+                    <li>מעל 300,000 דגמי רהיטים ופריטים מעוצבים, כולל מוצרים ממותגים</li>
+                    <li>התאמה אישית של רהיטים, חומרים וצבעים ליצירת עיצובים מדויקים</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-cogs"></i>
+                <h3>מערכות טכניות חכמות</h3>
+                <ul>
+                    <li>כלים לתכנון מערכות חשמל, מים וגז, כולל פרטי תשתיות</li>
+                    <li>עיצוב והדמיה של גגות מסוגים שונים: שטוחים, משופעים ומורכבים</li>
+                    <li>הנמכות תקרה ותכנון מדרגות עם שליטה מלאה על גובה, צורה וחומרים</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>יתרונות מרכזיים</h2>
+        <div class="advantages-grid">
+            <div class="advantage-card" data-aos="fade-up">
+                <i class="fas fa-mouse-pointer"></i>
+                <h3>קלות שימוש ונגישות</h3>
+                <p>ממשק אינטואיטיבי המותאם למשתמשים מתחילים ומתקדמים</p>
+            </div>
+            
+            <div class="advantage-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-brain"></i>
+                <h3>תמיכה בקבלת החלטות</h3>
+                <p>Autostyler – עוזר מבוסס AI המציע עיצובים מוכנים בהתאמה אישית</p>
+            </div>
+            
+            <div class="advantage-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-users"></i>
+                <h3>תיאום מלא עם אנשי מקצוע</h3>
+                <p>אפשרות לשיתוף תוכניות ורשימות חומרים עם קבלנים ומהנדסים</p>
+            </div>
+        </div>
+
+        <h2>למי Homestyler מתאימה?</h2>
+        <div class="target-audience">
+            <div class="audience-card" data-aos="fade-up">
+                <i class="fas fa-paint-brush"></i>
+                <h3>מעצבי פנים מקצועיים</h3>
+                <p>כלים מקצועיים לתכנון מדויק, יצירת הדמיות וניהול פרויקטים מורכבים</p>
+            </div>
+            
+            <div class="audience-card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fas fa-home"></i>
+                <h3>בעלי בתים</h3>
+                <p>עיצוב בית חלומותיכם בצורה פשוטה ומהירה, עם אפשרות לתצוגה מקדימה ריאליסטית</p>
+            </div>
+            
+            <div class="audience-card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-key"></i>
+                <h3>סוכני נדל"ן</h3>
+                <p>יצירת הדמיות מעוררות השראה להצגת פוטנציאל החלל לנכסים</p>
+            </div>
+            
+            <div class="audience-card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>סטודנטים ומורים</h3>
+                <p>כלי לימודי המשלב יצירתיות וחדשנות לתרגול והוראה</p>
+            </div>
+        </div>
+
+        <div class="pricing-section" data-aos="fade-up">
+            <h2>חבילות תמחור</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <i class="fas fa-seedling"></i>
+                    <h3>חינמית</h3>
+                    <p>גישה לתכונות בסיסיות ליצירת עיצובים פשוטים</p>
+                </div>
+                <div class="pricing-card">
+                    <i class="fas fa-rocket"></i>
+                    <h3>מתקדמת</h3>
+                    <p>כוללת עיבודים ברזולוציה גבוהה וכלים מקצועיים נוספים</p>
+                </div>
+                <div class="pricing-card">
+                    <i class="fas fa-crown"></i>
+                    <h3>מקצועית</h3>
+                    <p>מתאימה למעצבים ואנשי מקצוע, עם כל התכונות המתקדמות ביותר</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section" data-aos="fade-up">
+            <h2>הצטרפו ל-Homestyler והתחילו לעצב היום!</h2>
+            <div class="cta-buttons">
+                <a href="https://wa.me/97254766775" class="cta-button" target="_blank">
+                    <i class="fab fa-whatsapp"></i>
+                    צור קשר בוואטסאפ
+                </a>
+                <a href="https://chat.whatsapp.com/IKy7NXxUc7rBBMbDii9yQ9" class="cta-button" target="_blank">
+                    <i class="fas fa-users"></i>
+                    הצטרף לקבוצת מעצבי פנים בבינה מלאכותית
+                </a>
+            </div>
+        </div>
+
+        <h2>גלריית עיצובים</h2>
+        <div class="gallery">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557186/1be55eed7b694183afe06af1f6d1793a_ppmop8.png" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557186/0f4c23c28b5f4a00b778e0bd03a81f42_jclmqf.png" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/0_3_on8o7x.webp" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557125/pexels-maksim-goncharenok-4352247_curkda.jpg" alt="עיצוב פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557125/pexels-atbo-245208_bwwxln.jpg" alt="עיצוב פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="400">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/System_Auto-save_Untitled_Master_Bedroom-1_vpnklm.jpg" alt="חדר שינה" class="gallery-image" data-aos="fade-up" data-aos-delay="500">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-06/12befb49-fc2d-2b01-6e19-cfe8fb5204c2/dok8XeGBZMbpmDWJnoALKE.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="600">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-06/42e38bf3-ea90-9942-70ab-30cd301dedfc/jdYj4BbD8qpNfmN5dymWKj.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="700">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-05/e4590496-1485-5ce0-f8a1-f0e8773192cf/oTRyit43sPyNW8uSV6EYpm.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="800">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-05/9c9910ce-c594-1ce6-6638-767536c3a10e/3YgB5YeNv9Sid5iUFLufme.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="900">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-13/13400a28-fdb4-0c34-c39f-8c1e2c54e73e/a594fa6f-fc5c-40a3-8bb8-cdbd91ffdc15.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-13/928fae01-176b-be23-f18b-601f65b28183/078bfc66-601a-4c77-8ede-d754aee02a4a.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2024-12-13/d9be2189-24c8-5ad2-f5f2-6021ca0419b1/2afd4de2-c906-427b-a0dc-4c7fb8535593.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2023-01-13/2422df2d-ba08-9623-2bbe-8437da1b707c/183c9697-338e-4e04-a5bd-bc39dc0a8c26.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://ezhome-prod-render-assets.oss-accelerate.aliyuncs.com/floorplan/render/images/2023-01-13/4a87d258-e5a6-7280-ff76-06c7565680cb/706b5ef0-22be-4533-b7db-a4018993c93a.jpg" alt="הדמיית פנים" class="gallery-image" data-aos="fade-up" data-aos-delay="400">
+        </div>
+
+        <div class="about-instructor" data-aos="fade-up">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723584593/%D7%AA%D7%9E%D7%95%D7%A0%D7%94_%D7%A2%D7%99%D7%93%D7%95_cjrzxy.png" alt="עידו שגב" class="instructor-image">
+            <div class="instructor-info">
+                <h2>אודות המדריך</h2>
+                <h3>עידו שגב - מומחה בינה מלאכותית לעיצוב פנים</h3>
+                <p>מרצה ומומחה בתחום הבינה המלאכותית עם התמחות ייחודית בתחומי הנדל"ן, עיצוב הפנים והאדריכלות. מכהן כמרצה לבינה מלאכותית במכללת אולטימה לעיצוב פנים, העביר מעל ל-100 סדנאות בתחום הבינה המלאכותית למעצבות ומעצבי פנים.</p>
+                <p><strong>המטרה שלי היא להנגיש את הכוח של הבינה המלאכותית לכל מעצב ומעצבת, ולספק את הכלים להצלחה בעולם העיצוב המתפתח של היום.</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+    </script>
+</body>
+</html>
