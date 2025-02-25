@@ -213,13 +213,6 @@
             transform: translateY(-5px);
         }
         
-        .waitlist-card {
-            background: white;
-            border-radius: 15px;
-            padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
         .nav-link {
             color: var(--text-color);
             font-weight: 500;
@@ -423,33 +416,6 @@
         </div>
     </div>
 
-    <!-- הרשמה לניוזלטר -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="max-w-2xl mx-auto">
-                <div class="bg-white rounded-2xl p-8 shadow-lg">
-                    <h3 class="text-2xl font-bold mb-6">הצטרפו לניוזלטר שלנו 📧</h3>
-                    <p class="mb-6">הירשמו וקבלו עדכונים על סדנאות חדשות וטיפים מקצועיים!</p>
-                    <form id="newsletter-form" class="space-y-4">
-                        <div>
-                            <input type="text" name="name" placeholder="שם מלא" class="w-full p-3 rounded-lg border border-gray-300" required>
-                        </div>
-                        <div>
-                            <input type="email" name="email" placeholder="אימייל" class="w-full p-3 rounded-lg border border-gray-300" required>
-                        </div>
-                        <div>
-                            <input type="tel" name="phone" placeholder="טלפון" class="w-full p-3 rounded-lg border border-gray-300" required>
-                        </div>
-                        <button type="submit" class="cta-button w-full justify-center">
-                            הרשמה לניוזלטר
-                            <i class="fas fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- שאלות נפוצות -->
     <section class="py-20 bg-gray-50">
         <div class="container mx-auto px-4 max-w-4xl">
@@ -523,160 +489,7 @@
         </div>
     </section>
 
-    <!-- רשימת המתנה -->
-    <section class="py-20 bg-gray-50">
-        <div class="container mx-auto px-4 max-w-2xl">
-            <h2 class="text-4xl font-bold text-center mb-12">רוצים להישאר מעודכנים?</h2>
-            <div class="waitlist-card" data-aos="fade-up">
-                <p class="text-center mb-8">הירשמו לרשימת ההמתנה וקבלו עדכונים על מועדי הסדנאות הבאות והטבות מיוחדות</p>
-                <form id="waitlist-form" class="flex flex-col md:flex-row gap-4">
-                    <input type="email" name="email" placeholder="כתובת המייל שלך" class="flex-1 p-4 rounded-lg border border-gray-300 focus:outline-none focus:border-primary" required>
-                    <button type="submit" class="cta-button-nav">
-                        הרשמה לעדכונים
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
     <!-- Scripts -->
-    <script>
-        const WEBHOOK_URL = 'https://hook.eu2.make.com/iadi14h2escpn9qbq1xt7ch03qz2bt79';
-        const CORS_PROXY = 'https://api.allorigins.win/raw?url=';
-
-        // Newsletter Form Handler
-        document.getElementById('newsletter-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Get form elements
-            const form = this;
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            
-            // Basic validation
-            const email = form.querySelector('input[name="email"]').value;
-            const phone = form.querySelector('input[name="phone"]').value;
-            
-            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                alert('אנא הכניסו כתובת אימייל תקינה');
-                return;
-            }
-            
-            if (!phone.match(/^[0-9\-\+]{9,}$/)) {
-                alert('אנא הכניסו מספר טלפון תקין');
-                return;
-            }
-
-            // Disable form and show loading state
-            form.querySelectorAll('input').forEach(input => input.disabled = true);
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
-
-            const formData = new FormData(form);
-            const data = {
-                data: {
-                    name: formData.get('name'),
-                    email: formData.get('email'),
-                    phone: formData.get('phone'),
-                    form_type: 'newsletter',
-                    timestamp: new Date().toISOString()
-                }
-            };
-
-            try {
-                const response = await fetch(encodeURI(CORS_PROXY + WEBHOOK_URL), {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Cache-Control': 'no-cache',
-                        'x-requested-with': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    alert('תודה על ההרשמה! נשלח לך מייל עם פרטים נוספים בקרוב.');
-                    form.reset();
-                } else {
-                    const errorData = await response.text();
-                    console.error('Server response:', errorData);
-                    throw new Error('שגיאה בשליחת הטופס');
-                }
-            } catch (error) {
-                alert('מצטערים, הייתה שגיאה בשליחת הטופס. אנא נסו שוב מאוחר יותר.');
-                console.error('Error:', error);
-            } finally {
-                // Re-enable form
-                form.querySelectorAll('input').forEach(input => input.disabled = false);
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        });
-
-        // Waitlist Form Handler
-        document.getElementById('waitlist-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            // Get form elements
-            const form = this;
-            const submitButton = form.querySelector('button[type="submit"]');
-            const originalButtonText = submitButton.innerHTML;
-            
-            // Basic validation
-            const email = form.querySelector('input[name="email"]').value;
-            
-            if (!email.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
-                alert('אנא הכניסו כתובת אימייל תקינה');
-                return;
-            }
-
-            // Disable form and show loading state
-            form.querySelectorAll('input').forEach(input => input.disabled = true);
-            submitButton.disabled = true;
-            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> שולח...';
-
-            const data = {
-                data: {
-                    email: email,
-                    form_type: 'waitlist',
-                    timestamp: new Date().toISOString()
-                }
-            };
-
-            try {
-                const response = await fetch(encodeURI(CORS_PROXY + WEBHOOK_URL), {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json',
-                        'Cache-Control': 'no-cache',
-                        'x-requested-with': 'XMLHttpRequest'
-                    },
-                    body: JSON.stringify(data)
-                });
-
-                if (response.ok) {
-                    alert('תודה על ההרשמה! נעדכן אותך בקרוב על מועדי הסדנאות הבאות.');
-                    form.reset();
-                } else {
-                    const errorData = await response.text();
-                    console.error('Server response:', errorData);
-                    throw new Error('שגיאה בשליחת הטופס');
-                }
-            } catch (error) {
-                alert('מצטערים, הייתה שגיאה בשליחת הטופס. אנא נסו שוב מאוחר יותר.');
-                console.error('Error:', error);
-            } finally {
-                // Re-enable form
-                form.querySelectorAll('input').forEach(input => input.disabled = false);
-                submitButton.disabled = false;
-                submitButton.innerHTML = originalButtonText;
-            }
-        });
-    </script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
     <script>
