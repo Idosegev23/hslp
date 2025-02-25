@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>סילבוס סדנת Homestyler - עידו שגב</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #62238C;
+            --secondary-color: #BF4B81;
+            --accent-color: #F25C78;
+            --bg-color: #F2D1B3;
+            --text-color: #0D0D0D;
+            --gradient: linear-gradient(135deg, #62238C, #BF4B81);
+        }
+        
+        * {
+            font-family: 'Heebo', sans-serif;
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        .syllabus-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .syllabus-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .module-title {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .topic-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .topic-list li {
+            padding: 0.5rem 0;
+            padding-right: 2rem;
+            position: relative;
+        }
+        
+        .topic-list li::before {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 8px;
+            height: 8px;
+            background: var(--accent-color);
+            border-radius: 50%;
+        }
+        
+        .navbar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        }
+        
+        .progress-indicator {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100vh;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 0%;
+            background: var(--primary-color);
+            transition: height 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .syllabus-card {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+            
+            .module-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" x-data="{ isOpen: false, scrolled: false }" @scroll.window="scrolled = window.pageYOffset > 50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png" alt="לוגו" class="h-12 transition-transform duration-300 hover:scale-110">
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-link">דף הבית</a>
+                    <a href="syllabus.html" class="nav-link">סילבוס</a>
+                    <a href="register.html" class="nav-link">הרשמה</a>
+                    <a href="https://wa.me/972547667775" class="cta-button-nav" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        דברו איתי
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" @click="isOpen = !isOpen">
+                    <i class="fas" :class="isOpen ? 'fa-times' : 'fa-bars'"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden" x-show="isOpen" x-transition>
+                <div class="flex flex-col gap-4 mt-4">
+                    <a href="index.html" class="nav-link-mobile">דף הבית</a>
+                    <a href="syllabus.html" class="nav-link-mobile">סילבוס</a>
+                    <a href="register.html" class="nav-link-mobile">הרשמה</a>
+                    <a href="https://wa.me/972547667775" class="cta-button-nav-mobile" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        דברו איתי
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="progress-indicator">
+        <div class="progress-bar"></div>
+    </div>
+
+    <div class="container mx-auto px-4 py-12">
+        <h1 class="text-4xl font-bold text-center mb-12">סילבוס סדנת Homestyler</h1>
+        
+        <div class="max-w-4xl mx-auto">
+            <!-- מבוא -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-star"></i>
+                    מבוא והיכרות עם התוכנה
+                </h2>
+                <ul class="topic-list">
+                    <li>היכרות עם ממשק המשתמש והכלים הבסיסיים</li>
+                    <li>הגדרות ראשוניות וארגון סביבת העבודה</li>
+                    <li>הכרת מערכת הקואורדינטות והניווט במרחב</li>
+                    <li>שמירה, ייצוא וניהול פרויקטים</li>
+                </ul>
+            </div>
+
+            <!-- יסודות התכנון -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-pencil-ruler"></i>
+                    יסודות התכנון והשרטוט
+                </h2>
+                <ul class="topic-list">
+                    <li>שרטוט קירות, מחיצות ופתחים</li>
+                    <li>תכנון וביצוע ריצוף</li>
+                    <li>צביעה ועיצוב קירות</li>
+                    <li>תכנון גגות מסוגים שונים</li>
+                    <li>תכנון מדרגות והנמכות תקרה</li>
+                    <li>הוספת אלמנטים טכניים: תאורה, מיזוג, גלאי עשן</li>
+                </ul>
+            </div>
+
+            <!-- מידול מתקדם -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-cube"></i>
+                    מידול מתקדם וקסטומיזציה
+                </h2>
+                <ul class="topic-list">
+                    <li>עיצוב מתקדם של קירות וחצאי קירות</li>
+                    <li>קסטומיזציה של קירות ותקרות</li>
+                    <li>עבודה עם ספריית המודלים המובנית</li>
+                    <li>סינון וחיפוש מודלים</li>
+                    <li>עריכת רהיטים: טקסטורות, מידות וצבעים</li>
+                    <li>ייבוא מודלים חיצוניים</li>
+                </ul>
+            </div>
+
+            <!-- ייבוא וייצוא -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-file-import"></i>
+                    ייבוא וייצוא קבצים
+                </h2>
+                <ul class="topic-list">
+                    <li>ייבוא קבצי DWG ו-PDF</li>
+                    <li>המרת תוכניות דו-ממדיות למודל תלת-ממדי</li>
+                    <li>ייצוא תוכניות ביצוע</li>
+                    <li>יצירת כתבי כמויות</li>
+                    <li>שיתוף פרויקטים עם לקוחות וקבלנים</li>
+                </ul>
+            </div>
+
+            <!-- יצירת מודלים -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-shapes"></i>
+                    יצירת מודלים מותאמים אישית
+                </h2>
+                <ul class="topic-list">
+                    <li>יצירת רהיטים מותאמים אישית</li>
+                    <li>בניית מודלים תלת-ממדיים מורכבים</li>
+                    <li>עריכת טקסטורות וחומרים</li>
+                    <li>יצירת ספריית מודלים אישית</li>
+                </ul>
+            </div>
+
+            <!-- רינדור והדמיות -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-camera"></i>
+                    רינדור והדמיות
+                </h2>
+                <ul class="topic-list">
+                    <li>עקרונות הרינדור והתאורה</li>
+                    <li>שליטה במצלמות וזוויות צילום</li>
+                    <li>יצירת סרטוני וידאו וסיורים וירטואליים</li>
+                    <li>טכניקות מתקדמות לרינדור ריאליסטי</li>
+                    <li>עריכת תאורה טבעית ומלאכותית</li>
+                    <li>ייצוא הדמיות באיכות גבוהה</li>
+                </ul>
+            </div>
+
+            <!-- פרויקט מסכם -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-project-diagram"></i>
+                    פרויקט מלווה
+                </h2>
+                <ul class="topic-list">
+                    <li>תכנון ראשוני של הפרויקט</li>
+                    <li>יישום כל הכלים והטכניקות שנלמדו</li>
+                    <li>ליווי אישי לאורך כל שלבי הפרויקט</li>
+                    <li>הגשה סופית הכוללת תוכניות, הדמיות וסרטון</li>
+                </ul>
+            </div>
+
+            <!-- בונוסים -->
+            <div class="syllabus-card" data-aos="fade-up">
+                <h2 class="module-title">
+                    <i class="fas fa-gift"></i>
+                    בונוסים מיוחדים
+                </h2>
+                <ul class="topic-list">
+                    <li>גישה לקהילת הבוגרים הפעילה שלנו</li>
+                    <li>ספריית מודלים ייחודית למשתתפי הסדנה</li>
+                    <li>טיפים וטריקים מתקדמים לעבודה מהירה</li>
+                    <li>תבניות מוכנות לשימוש בפרויקטים</li>
+                    <li>חומרי עזר וסרטוני הדרכה נוספים</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar').style.height = scrolled + '%';
+        });
+    </script>
+</body>
+</html> 

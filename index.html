@@ -1,0 +1,1665 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Homestyler - הפתרון המושלם לתכנון ועיצוב פנים בתלת-ממד. למדו כיצד להשתמש בכלי המתקדם ביותר לעיצוב פנים עם עידו שגב.">
+    <meta name="keywords" content="homestyler, עיצוב פנים, תכנון פנים, הדמיות תלת מימד, סדנת עיצוב, עידו שגב">
+    
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Homestyler - הפתרון המושלם לתכנון ועיצוב פנים">
+    <meta property="og:description" content="למדו כיצד להשתמש בכלי המתקדם ביותר לעיצוב פנים עם עידו שגב">
+    <meta property="og:image" content="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png">
+    <meta property="og:url" content="https://yourwebsite.com">
+    
+    <!-- Schema.org markup -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Course",
+        "name": "סדנת Homestyler",
+        "description": "הפתרון המושלם לתכנון ועיצוב פנים בתלת-ממד",
+        "provider": {
+            "@type": "Person",
+            "name": "עידו שגב",
+            "sameAs": "https://yourwebsite.com"
+        }
+    }
+    </script>
+
+    <title>Homestyler - הפתרון המושלם לתכנון ועיצוב פנים בתלת-ממד</title>
+    <link rel="icon" href="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png" type="image/png">
+    
+    <!-- CSS Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&display=swap');
+        
+        :root {
+            --primary-color: #62238C;
+            --secondary-color: #BF4B81;
+            --accent-color: #F25C78;
+            --bg-color: #F2D1B3;
+            --text-color: #0D0D0D;
+            --gradient: linear-gradient(135deg, #62238C, #BF4B81);
+            --gradient-hover: linear-gradient(135deg, #BF4B81, #F25C78);
+        }
+        
+        * {
+            scroll-behavior: smooth;
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            overflow-x: hidden;
+            width: 100%;
+            max-width: 100vw;
+            position: relative;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            position: relative;
+            overflow: visible;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 0.5rem 0;
+        }
+
+        .workshop-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(13, 13, 13, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .workshop-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .workshop-card:hover::before {
+            opacity: 1;
+        }
+
+        .workshop-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .workshop-card:hover > * {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .workshop-dates {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+        }
+
+        .date-badge {
+            background: var(--gradient);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 10px rgba(98, 35, 140, 0.2);
+        }
+
+        .date-badge:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(98, 35, 140, 0.3);
+        }
+
+        .swiper-container {
+            width: 100%;
+            padding-top: 50px;
+            padding-bottom: 50px;
+            overflow: hidden;
+            padding: 20px 0;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 300px;
+            height: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide:hover img {
+            transform: scale(1.1);
+        }
+
+        .cta-button {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(242, 92, 120, 0.3);
+        }
+
+        .cta-button:hover {
+            background: var(--gradient-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(242, 92, 120, 0.4);
+        }
+
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 2rem;
+            left: 2rem;
+            z-index: 1000;
+            background: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .floating-whatsapp:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .workshop-card {
+                margin: 1rem;
+            }
+            
+            .date-badge {
+                font-size: 0.8rem;
+            }
+            
+            .floating-whatsapp {
+                bottom: 1rem;
+                left: 1rem;
+                width: 50px;
+                height: 50px;
+                font-size: 1.2rem;
+            }
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(13, 13, 13, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 0;
+        }
+        
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card:hover * {
+            color: white;
+            position: relative;
+            z-index: 1;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .workshop-details {
+            background: var(--bg-color);
+            border-radius: 15px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .price-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 30px;
+            display: inline-flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 1rem 0;
+            font-weight: bold;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-tag::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255,255,255,0.1), rgba(255,255,255,0));
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+
+        .price-tag:hover::before {
+            transform: translateX(100%);
+        }
+
+        .original-price {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            opacity: 0.8;
+        }
+
+        .discount-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+        }
+
+        .benefits-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .benefits-list li i {
+            color: var(--accent-color);
+        }
+        
+        .instructor-section {
+            background: white;
+            padding: 4rem 0;
+        }
+
+        .instructor-card {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: var(--bg-color);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .instructor-image {
+            width: 300px;
+            height: 300px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .instructor-info {
+            flex: 1;
+        }
+
+        @media (max-width: 768px) {
+            .instructor-card {
+                flex-direction: column;
+            text-align: center;
+                gap: 1.5rem;
+            }
+
+            .instructor-image {
+                width: 200px;
+                height: 200px;
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .features-grid, .grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .container {
+                padding: 0 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .features-grid, .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .workshop-card {
+                margin: 1rem 0;
+            }
+            
+            .navbar {
+                padding: 0.5rem 0;
+            }
+            
+            .navbar .flex {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .cta-button {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .feature-card, .workshop-card {
+                padding: 1.5rem;
+            }
+            
+            .instructor-card {
+                padding: 1.5rem;
+            }
+            
+            .swiper-container {
+                padding: 30px 0;
+            }
+            
+            .swiper-slide {
+                width: 250px;
+                height: 250px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .workshop-dates {
+                gap: 0.5rem;
+            }
+            
+            .date-badge {
+                font-size: 0.8rem;
+                padding: 0.3rem 0.8rem;
+            }
+            
+            .price-tag {
+                padding: 0.8rem 1.2rem;
+            }
+            
+            .discount-price {
+                font-size: 1.2rem;
+            }
+            
+            .benefits-list {
+                font-size: 0.9rem;
+            }
+            
+            .floating-whatsapp {
+                width: 45px;
+                height: 45px;
+                font-size: 1.2rem;
+            }
+        }
+
+        /* שיפור הרקע בהדר */
+        .header-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(135deg, rgba(26, 54, 93, 0.9), rgba(43, 108, 176, 0.9)),
+                url('https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557186/1be55eed7b694183afe06af1f6d1793a_ppmop8.png');
+            background-size: cover;
+            background-position: center;
+            z-index: 0;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background-blend-mode: soft-light;
+                filter: saturate(1.2);
+            }
+            50% {
+                background-blend-mode: overlay;
+                filter: saturate(1.5);
+            }
+            100% {
+                background-blend-mode: soft-light;
+                filter: saturate(1.2);
+            }
+        }
+
+        /* תיקון האלמנטים הדקורטיביים */
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -10%;
+            width: 120%;
+            height: 100px;
+            background: var(--bg-color);
+            transform: skewY(-3deg);
+            z-index: 0;
+        }
+
+        .section-divider {
+            position: relative;
+            padding: 4rem 0;
+            overflow: visible;
+        }
+
+        .section-divider > .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        /* מניעת שינוי צבע ברובריקות הפנימיות */
+        .workshop-card:hover .workshop-details,
+        .workshop-card:hover .workshop-details * {
+            color: var(--text-color) !important;
+        }
+
+        .workshop-card:hover .benefits-list li i {
+            color: var(--accent-color) !important;
+        }
+
+        .workshop-card:hover .price-tag,
+        .workshop-card:hover .price-tag * {
+            color: white !important;
+        }
+
+        .feature-card:hover .feature-icon,
+        .workshop-card:hover .feature-icon {
+            color: white !important;
+        }
+
+        /* Floating Labels */
+        .workshop-dates {
+            position: relative;
+        }
+
+        .date-badge {
+            transform: translateY(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .date-badge:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Improved Scroll Indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-20px); }
+            60% { transform: translateY(-10px); }
+        }
+
+        /* Improved Navigation */
+        .navbar {
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+        }
+
+        /* Improved Gallery */
+        .swiper-slide {
+            transform: scale(0.8);
+            transition: transform 0.3s ease;
+        }
+
+        .swiper-slide-active {
+            transform: scale(1);
+        }
+
+        .swiper-pagination-bullet {
+            background: var(--primary-color);
+            opacity: 0.5;
+        }
+
+        .swiper-pagination-bullet-active {
+            opacity: 1;
+            background: var(--accent-color);
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: var(--primary-color);
+        }
+
+        /* שינוי צבע טקסט בסקשנים עם רקע כהה */
+        .header-bg + .absolute + .container * {
+            color: white;
+        }
+        
+        /* תיקון רספונסיביות לתמונות */
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .navbar .container {
+                padding: 0.5rem 1rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .workshop-card, .feature-card {
+                margin: 0.5rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .swiper-slide {
+                width: 280px !important;
+                height: 280px !important;
+            }
+        }
+
+        /* אפקטים חדשים */
+        .cta-button {
+            transform: scale(1);
+            transition: all 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .navbar img {
+            transition: transform 0.3s ease;
+        }
+        
+        .navbar img:hover {
+            transform: scale(1.1);
+        }
+
+        .swiper-slide img {
+            filter: brightness(0.9);
+            transition: all 0.3s ease;
+        }
+
+        .swiper-slide:hover img {
+            filter: brightness(1.1);
+            transform: scale(1.05);
+        }
+
+        /* שיפור טיפוגרפיה */
+        p, li {
+            line-height: 1.8;
+            font-size: 1.1rem;
+        }
+
+        h2, h3 {
+            letter-spacing: -0.5px;
+        }
+
+        /* אפקט זוהר לכפתורים */
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg);
+            animation: shine 3s infinite;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 5px;
+            height: 100%;
+            background: rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .progress-bar::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            background: var(--primary-color);
+            transition: height 0.3s ease;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: -100px;
+            right: 2rem;
+            background: var(--gradient);
+            color: white;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            z-index: 1000;
+        }
+
+        .back-to-top.visible {
+            bottom: 2rem;
+            opacity: 1;
+        }
+
+        /* Decorative Elements */
+        .section-divider {
+            position: relative;
+            padding: 4rem 0;
+            overflow: hidden;
+        }
+
+        .section-divider::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -10%;
+            width: 120%;
+            height: 100px;
+            background: var(--bg-color);
+            transform: skewY(-3deg);
+            z-index: 1;
+        }
+
+        /* Enhanced Card Animations */
+        .feature-card, .workshop-card {
+            transform: translateY(0) scale(1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover, .workshop-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* Floating Icons Animation */
+        .feature-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Enhanced Loading */
+        .lazy-image {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .lazy-image.loaded {
+            opacity: 1;
+        }
+
+        /* Fixed Navigation Menu */
+        .fixed-nav {
+            position: fixed;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: none;
+        }
+
+        @media (min-width: 1024px) {
+            .fixed-nav {
+                display: block;
+            }
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            margin: 8px 0;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.3s ease;
+        }
+
+        .nav-dot.active {
+            opacity: 1;
+            transform: scale(1.3);
+        }
+
+        /* Wave Effect for Buttons */
+            .cta-button {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 300px;
+            height: 300px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: transform 0.6s, opacity 0.6s;
+        }
+
+        .cta-button:active::after {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        /* עדכון האלמנטים הדקורטיביים */
+        #features { 
+            position: relative; 
+            overflow: visible;
+        }
+        #features::before { 
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 50px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 120' preserveAspectRatio='none'%3E%3Cpath d='M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z' fill='%23F2D1B3'/%3E%3C/path%3E%3C/svg%3E");
+            background-size: cover;
+            z-index: 1;
+        }
+
+        .target-audience-section { 
+            position: relative;
+            overflow: visible;
+        }
+        .target-audience-section::before { 
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 20%, var(--primary-color) 0%, transparent 70%);
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .advantages-section { 
+            position: relative;
+            overflow: visible;
+        }
+        .advantages-section::before { 
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color) 25%, transparent 25%);
+            opacity: 0.05;
+            z-index: 0;
+        }
+
+        #workshops { 
+            position: relative;
+            overflow: visible;
+        }
+        #workshops::before { 
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(var(--accent-color) 1px, transparent 1px);
+            background-size: 20px 20px;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        /* שיפור אפקט ההובר */
+        .workshop-card:hover,
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+        }
+
+        .workshop-card:hover::before,
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .workshop-card:hover .workshop-details {
+            background: var(--bg-color);
+            color: var(--text-color);
+            position: relative;
+            z-index: 2;
+        }
+
+        .workshop-card:hover .workshop-details * {
+            color: var(--text-color);
+        }
+
+        .workshop-card:hover .benefits-list i {
+            color: var(--accent-color);
+        }
+
+        .feature-card:hover .feature-icon {
+            color: white;
+        }
+
+        /* אלמנטים דקורטיביים */
+        .decorative-element {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .decorative-circle {
+            border-radius: 50%;
+            background: var(--gradient);
+            opacity: 0.1;
+        }
+
+        .decorative-wave {
+            background: var(--gradient);
+            clip-path: path('M0,0 C150,100 350,0 500,100 L500,100 L0,100 Z');
+            opacity: 0.1;
+        }
+
+        .decorative-diagonal {
+            background: var(--gradient);
+            transform: skewY(-6deg);
+            opacity: 0.1;
+        }
+
+        .decorative-dots {
+            background-image: radial-gradient(var(--primary-color) 2px, transparent 2px);
+            background-size: 30px 30px;
+            opacity: 0.1;
+        }
+
+        /* עיצוב חדש לעדויות */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .testimonial-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card::before {
+            content: '"';
+            position: absolute;
+            top: 1rem;
+            right: 2rem;
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.1;
+            font-family: serif;
+            z-index: 1;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .nav-link {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .nav-link-mobile {
+            color: var(--text-color);
+            font-weight: 500;
+            padding: 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: rgba(98, 35, 140, 0.05);
+        }
+
+        .nav-link-mobile:hover {
+            background: var(--gradient);
+            color: white;
+        }
+
+        .cta-button-nav {
+            background: var(--gradient);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .cta-button-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(98, 35, 140, 0.2);
+        }
+
+        .cta-button-nav-mobile {
+            background: var(--gradient);
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" x-data="{ isOpen: false, scrolled: false }" @scroll.window="scrolled = window.pageYOffset > 50">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="index.html" class="flex items-center">
+                    <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png" alt="לוגו" class="h-12 transition-transform duration-300 hover:scale-110">
+                </a>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="index.html" class="nav-link">דף הבית</a>
+                    <a href="syllabus.html" class="nav-link">סילבוס</a>
+                    <a href="register.html" class="nav-link">הרשמה</a>
+                    <a href="https://wa.me/972547667775" class="cta-button-nav" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        דברו איתי
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden" @click="isOpen = !isOpen">
+                    <i class="fas" :class="isOpen ? 'fa-times' : 'fa-bars'"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden" x-show="isOpen" x-transition>
+                <div class="flex flex-col gap-4 mt-4">
+                    <a href="index.html" class="nav-link-mobile">דף הבית</a>
+                    <a href="syllabus.html" class="nav-link-mobile">סילבוס</a>
+                    <a href="register.html" class="nav-link-mobile">הרשמה</a>
+                    <a href="https://wa.me/972547667775" class="cta-button-nav-mobile" target="_blank">
+                        <i class="fab fa-whatsapp"></i>
+                        דברו איתי
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="min-h-screen flex items-center justify-center relative overflow-hidden">
+        <div class="header-bg"></div>
+        <div class="absolute inset-0 bg-black opacity-50"></div>
+        <div class="container mx-auto px-4 text-center relative z-10 text-white">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723558434/NewLogo_BLANK-Recovered_x4kgew.png" alt="לוגו" class="mx-auto mb-8 w-64">
+            <h1 class="text-5xl font-bold mb-6">Homestyler - הפתרון המושלם לתכנון ועיצוב פנים בתלת-ממד</h1>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">צרו עיצובים מרהיבים ומקצועיים עם הכלי המתקדם ביותר בתחום</p>
+            <a href="#workshops" class="cta-button text-xl">
+                הרשמה לסדנאות
+                <i class="fas fa-arrow-left"></i>
+            </a>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('features').scrollIntoView({behavior: 'smooth'})">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 bg-white">
+        <div class="decorative-element decorative-wave"></div>
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">יכולות מרכזיות</h2>
+            <div class="features-grid">
+            <div class="feature-card" data-aos="fade-up">
+                    <i class="fas fa-cube feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">תכנון ועיצוב בתלת-ממד</h3>
+                    <ul class="space-y-2">
+                        <li>יצירת תוכניות מפורטות של קומה ומבנים מורכבים</li>
+                        <li>ייבוא קבצי DWG ותמונות לתוכניות תלת-ממדיות</li>
+                        <li>כלים מתקדמים לשרטוט ועיצוב</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-paint-brush feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">ספריית עיצוב עשירה</h3>
+                    <ul class="space-y-2">
+                        <li>מעל 300,000 פריטי ריהוט ועיצוב</li>
+                        <li>התאמה אישית של חומרים וצבעים</li>
+                        <li>מוצרים ממותגים מובילים</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-magic feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">כלים חכמים</h3>
+                    <ul class="space-y-2">
+                        <li>תכנון מערכות חשמל ותשתיות</li>
+                        <li>עיצוב גגות והנמכות תקרה</li>
+                        <li>תכנון מדרגות מתקדם</li>
+                </ul>
+            </div>
+        </div>
+            </div>
+    </section>
+
+    <!-- Target Audience Section -->
+    <section class="py-20 bg-gray-50 target-audience-section">
+        <div class="decorative-element decorative-circle"></div>
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">למי Homestyler מתאימה?</h2>
+            <div class="grid md:grid-cols-4 gap-8">
+                <div class="feature-card" data-aos="fade-up">
+                    <i class="fas fa-paint-brush feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">מעצבי פנים מקצועיים</h3>
+                <p>כלים מקצועיים לתכנון מדויק, יצירת הדמיות וניהול פרויקטים מורכבים</p>
+            </div>
+            
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-home feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">בעלי בתים</h3>
+                <p>עיצוב בית חלומותיכם בצורה פשוטה ומהירה, עם אפשרות לתצוגה מקדימה ריאליסטית</p>
+            </div>
+            
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-key feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">סוכני נדל"ן</h3>
+                <p>יצירת הדמיות מעוררות השראה להצגת פוטנציאל החלל לנכסים</p>
+            </div>
+            
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-graduation-cap feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">סטודנטים ומורים</h3>
+                <p>כלי לימודי המשלב יצירתיות וחדשנות לתרגול והוראה</p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section class="py-20 bg-white advantages-section">
+        <div class="decorative-element decorative-diagonal"></div>
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">יתרונות מרכזיים</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card" data-aos="fade-up">
+                    <i class="fas fa-mouse-pointer feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">קלות שימוש ונגישות</h3>
+                    <p>ממשק אינטואיטיבי המותאם למשתמשים מתחילים ומתקדמים, עם כלים מתקדמים לעיצוב מקצועי</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-brain feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">תמיכה בקבלת החלטות</h3>
+                    <p>Autostyler – עוזר מבוסס AI המציע עיצובים מוכנים בהתאמה אישית לצרכים שלכם</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-users feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">תיאום מלא עם אנשי מקצוע</h3>
+                    <p>אפשרות לשיתוף תוכניות ורשימות חומרים עם קבלנים ומהנדסים בקלות</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops Section -->
+    <section id="workshops" class="py-20 bg-gray-50">
+        <div class="decorative-element decorative-dots"></div>
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">הסדנאות הקרובות</h2>
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Evening Workshop -->
+                <div class="workshop-card">
+                    <h3 class="text-2xl font-bold mb-4">סדנת ערב</h3>
+                    <div class="workshop-dates">
+                        <span class="date-badge">3.3.2025</span>
+                        <span class="date-badge">10.3.2025</span>
+                        <span class="date-badge">17.3.2025</span>
+                        <span class="date-badge">24.3.2025</span>
+                    </div>
+                    <div class="workshop-details">
+                        <p class="text-lg"><i class="far fa-clock ml-2"></i>שעות: 20:00-21:30</p>
+                        <div class="price-tag">
+                            <span class="original-price">₪1,399</span>
+                            <span class="discount-price">₪1,199</span>
+                        </div>
+                        <h4 class="font-bold mb-2">מה תלמדו בסדנה:</h4>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i>תכנון ועיצוב חללים בתלת-ממד</li>
+                            <li><i class="fas fa-check-circle"></i>עבודה עם ספריות מוצרים</li>
+                            <li><i class="fas fa-check-circle"></i>יצירת הדמיות מקצועיות</li>
+                            <li><i class="fas fa-check-circle"></i>טכניקות מתקדמות לעיצוב</li>
+                        </ul>
+                    </div>
+                    <a href="https://mrng.to/jAO3BofGyf" class="cta-button mt-4" target="_blank">
+                        הרשמה לסדנת ערב
+                        <i class="fas fa-arrow-left"></i>
+                    </a>
+                </div>
+
+                <!-- Morning Workshop -->
+                <div class="workshop-card">
+                    <h3 class="text-2xl font-bold mb-4">סדנת בוקר</h3>
+                    <div class="workshop-dates">
+                        <span class="date-badge">12.3.2025</span>
+                        <span class="date-badge">19.3.2025</span>
+                        <span class="date-badge">27.3.2025</span>
+                        <span class="date-badge">1.4.2025</span>
+                    </div>
+                    <div class="workshop-details">
+                        <p class="text-lg"><i class="far fa-clock ml-2"></i>שעות: 10:00-11:30</p>
+                        <div class="price-tag">
+                            <span class="original-price">₪1,399</span>
+                            <span class="discount-price">₪1,199</span>
+                        </div>
+                        <h4 class="font-bold mb-2">מה תלמדו בסדנה:</h4>
+                        <ul class="benefits-list">
+                            <li><i class="fas fa-check-circle"></i>תכנון ועיצוב חללים בתלת-ממד</li>
+                            <li><i class="fas fa-check-circle"></i>עבודה עם ספריות מוצרים</li>
+                            <li><i class="fas fa-check-circle"></i>יצירת הדמיות מקצועיות</li>
+                            <li><i class="fas fa-check-circle"></i>טכניקות מתקדמות לעיצוב</li>
+                        </ul>
+                    </div>
+                    <a href="https://mrng.to/uEVf2r75Tu" class="cta-button mt-4" target="_blank">
+                        הרשמה לסדנת בוקר
+                        <i class="fas fa-arrow-left"></i>
+                </a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">גלריית עבודות</h2>
+            <div class="swiper-container">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557186/1be55eed7b694183afe06af1f6d1793a_ppmop8.png" alt="הדמיית פנים">
+        </div>
+                    <div class="swiper-slide">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557186/0f4c23c28b5f4a00b778e0bd03a81f42_jclmqf.png" alt="הדמיית פנים">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/0_3_on8o7x.webp" alt="הדמיית פנים">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557125/pexels-maksim-goncharenok-4352247_curkda.jpg" alt="עיצוב פנים">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557125/pexels-atbo-245208_bwwxln.jpg" alt="עיצוב פנים">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723557185/System_Auto-save_Untitled_Master_Bedroom-1_vpnklm.jpg" alt="חדר שינה">
+                    </div>
+                    <!-- Add all other images here -->
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50 section-divider">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">שאלות נפוצות</h2>
+            <div class="max-w-3xl mx-auto" x-data="{ selected: null }">
+                <!-- FAQ Item 1 -->
+                <div class="mb-4">
+                    <button class="w-full p-4 bg-white rounded-lg shadow-md flex justify-between items-center" @click="selected !== 1 ? selected = 1 : selected = null">
+                        <span class="text-lg font-bold">האם נדרש ידע מוקדם?</span>
+                        <i class="fas" :class="selected === 1 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div class="p-4 bg-white rounded-b-lg shadow-md" x-show="selected === 1" x-transition>
+                        <p>לא נדרש ידע מוקדם. הסדנה מתאימה למתחילים ומתקדמים כאחד. אנחנו מתחילים מהבסיס ומתקדמים בהדרגה לכלים מתקדמים.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 2 -->
+                <div class="mb-4">
+                    <button class="w-full p-4 bg-white rounded-lg shadow-md flex justify-between items-center" @click="selected !== 2 ? selected = 2 : selected = null">
+                        <span class="text-lg font-bold">מה אני מקבל בסיום הקורס?</span>
+                        <i class="fas" :class="selected === 2 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div class="p-4 bg-white rounded-b-lg shadow-md" x-show="selected === 2" x-transition>
+                        <p>בסיום הקורס תקבלו תעודת סיום, גישה לקהילת הבוגרים שלנו, וכמובן את הידע והכלים המעשיים לעבודה עם Homestyler.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 3 -->
+                <div class="mb-4">
+                    <button class="w-full p-4 bg-white rounded-lg shadow-md flex justify-between items-center" @click="selected !== 3 ? selected = 3 : selected = null">
+                        <span class="text-lg font-bold">איך מתבצעת ההרשמה?</span>
+                        <i class="fas" :class="selected === 3 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div class="p-4 bg-white rounded-b-lg shadow-md" x-show="selected === 3" x-transition>
+                        <p>ההרשמה מתבצעת דרך הכפתורים באתר. לאחר ההרשמה תקבלו מייל עם כל הפרטים והמידע הנדרש.</p>
+                    </div>
+                </div>
+                
+                <!-- FAQ Item 4 -->
+                <div class="mb-4">
+                    <button class="w-full p-4 bg-white rounded-lg shadow-md flex justify-between items-center" @click="selected !== 4 ? selected = 4 : selected = null">
+                        <span class="text-lg font-bold">האם יש אפשרות לתשלומים?</span>
+                        <i class="fas" :class="selected === 4 ? 'fa-chevron-up' : 'fa-chevron-down'"></i>
+                    </button>
+                    <div class="p-4 bg-white rounded-b-lg shadow-md" x-show="selected === 4" x-transition>
+                        <p>כן, ניתן לחלק את התשלום ל-3 תשלומים ללא ריבית.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-white section-divider">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">המלצות מבוגרי הסדנה</h2>
+            <div class="testimonials-grid">
+                <!-- עדות 1 -->
+                <div class="testimonial-card" data-aos="fade-up">
+                    <p class="testimonial-content">"התוכנה מאפשרת לי להציג ללקוחות הדמיות מקצועיות תוך דקות. עידו לימד אותי את כל הטריקים שחוסכים לי המון זמן בעבודה היומיומית."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>שירה לוי</h4>
+                            <p>מעצבת פנים, בעלת סטודיו 'שירה עיצובים'</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- עדות 2 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="100">
+                    <p class="testimonial-content">"כמהנדס אדריכלות, חיפשתי כלי שיעזור לי להציג תכניות ללקוחות בצורה ויזואלית. הסדנה לימדה אותי איך להשתמש בתוכנה בצורה מקצועית ויעילה."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>אמיר כהן</h4>
+                            <p>מהנדס אדריכלות, חברת 'בניין ירוק'</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- עדות 3 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                    <p class="testimonial-content">"התחלתי את הקורס בלי שום ידע בתוכנות עיצוב. היום אני מעצבת בתים שלמים ומייצרת הדמיות מדהימות. ההשקעה השתלמה לי כבר בפרויקט הראשון."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>נועה ברק</h4>
+                            <p>בוגרת המחלקה לעיצוב פנים, מכללת אורט</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- עדות 4 -->
+                <div class="testimonial-card" data-aos="fade-up" data-aos-delay="300">
+                    <p class="testimonial-content">"הסדנה נתנה לי את הביטחון להתמודד עם פרויקטים מורכבים. היכולת להציג ללקוחות הדמיות איכותיות שיפרה משמעותית את אחוזי הסגירה שלי."</p>
+                    <div class="testimonial-author">
+                        <div class="author-info">
+                            <h4>דניאל אברהם</h4>
+                            <p>אדריכל ומעצב פנים, סטודיו 'קו נקי'</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Now Section -->
+    <section class="py-20 bg-gray-50 section-divider">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">למה ללמוד עכשיו?</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="feature-card" data-aos="fade-up">
+                    <i class="fas fa-chart-line feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">שוק בצמיחה</h3>
+                    <p>שוק העיצוב הדיגיטלי צפוי לצמוח ב-25% בשנים הקרובות. זה הזמן להיכנס לתחום!</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fas fa-rocket feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">יתרון תחרותי</h3>
+                    <p>שליטה בכלים דיגיטליים מתקדמים נותנת לך יתרון משמעותי בשוק העבודה</p>
+                </div>
+                
+                <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-clock feature-icon"></i>
+                    <h3 class="text-2xl font-bold mb-4">חיסכון בזמן</h3>
+                    <p>למידה מוקדמת של הכלים תחסוך לך שעות רבות של עבודה בעתיד</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instructor Section -->
+    <section class="instructor-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-bold text-center mb-12">המדריך שלכם</h2>
+            <div class="instructor-card" data-aos="fade-up">
+            <img src="https://res.cloudinary.com/dsoh3yteb/image/upload/v1723584593/%D7%AA%D7%9E%D7%95%D7%A0%D7%94_%D7%A2%D7%99%D7%93%D7%95_cjrzxy.png" alt="עידו שגב" class="instructor-image">
+            <div class="instructor-info">
+                    <h3 class="text-3xl font-bold mb-4">עידו שגב</h3>
+                    <h4 class="text-xl text-primary-600 mb-4">מומחה בינה מלאכותית לעיצוב פנים</h4>
+                    <p class="mb-4">מרצה ומומחה בתחום הבינה המלאכותית עם התמחות ייחודית בתחומי הנדל"ן, עיצוב הפנים והאדריכלות. מכהן כמרצה לבינה מלאכותית במכללת אולטימה לעיצוב פנים, העביר מעל ל-100 סדנאות בתחום הבינה המלאכותית למעצבות ומעצבי פנים.</p>
+                    <p class="font-bold">המטרה שלי היא להנגיש את הכוח של הבינה המלאכותית לכל מעצב ומעצבת, ולספק את הכלים להצלחה בעולם העיצוב המתפתח של היום.</p>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/972547667775" class="floating-whatsapp" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar"></div>
+
+    <!-- Fixed Navigation Dots -->
+    <div class="fixed-nav">
+        <div class="nav-dot" data-section="header"></div>
+        <div class="nav-dot" data-section="features"></div>
+        <div class="nav-dot" data-section="target-audience"></div>
+        <div class="nav-dot" data-section="advantages"></div>
+        <div class="nav-dot" data-section="workshops"></div>
+        <div class="nav-dot" data-section="gallery"></div>
+        <div class="nav-dot" data-section="instructor"></div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 800,
+            once: true,
+            offset: 100
+        });
+
+        // Initialize Swiper with improved options
+        new Swiper('.swiper-container', {
+            effect: 'coverflow',
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: 'auto',
+            initialSlide: 2,
+            coverflowEffect: {
+                rotate: 20,
+                stretch: 0,
+                depth: 200,
+                modifier: 1,
+                slideShadows: true,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true,
+                dynamicBullets: true,
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 3000,
+                disableOnInteraction: false,
+            },
+            speed: 1000,
+            loop: true,
+        });
+
+        // Improved scroll handling
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.progress-bar::after').style.height = scrolled + '%';
+        });
+
+        // Back to Top Button
+        window.addEventListener('scroll', () => {
+            const backToTop = document.querySelector('.back-to-top');
+            if (window.scrollY > 500) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Fixed Navigation Dots
+        const sections = document.querySelectorAll('section');
+        const navDots = document.querySelectorAll('.nav-dot');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - sectionHeight / 3)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navDots.forEach(dot => {
+                dot.classList.remove('active');
+                if (dot.dataset.section === current) {
+                    dot.classList.add('active');
+                }
+            });
+        });
+
+        // Lazy Loading Images
+        document.addEventListener('DOMContentLoaded', () => {
+            const lazyImages = document.querySelectorAll('img[data-src]');
+            
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => imageObserver.observe(img));
+        });
+    </script>
+</body>
+</html>
