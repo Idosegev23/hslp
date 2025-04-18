@@ -1388,6 +1388,25 @@
                         <i class="fas fa-arrow-left"></i>
                     </a>
                 </div>
+
+                <div class="workshop-card" data-aos="fade-up">
+                    <h3>סדנת בוקר</h3>
+                    <p>סדנה אינטימית בקבוצה קטנה</p>
+                    <div class="workshop-dates">
+                        <span class="date-badge">יום ראשון, 9:00-13:00</span>
+                    </div>
+                    <a href="register.html" class="cta-button">הרשמה לסדנה</a>
+                </div>
+
+                <div class="workshop-card" data-aos="fade-up">
+                    <h3>סדנת ערב</h3>
+                    <p>סדנה אינטימית בקבוצה קטנה</p>
+                    <div class="workshop-dates">
+                        <span class="date-badge">יום ראשון, 17:00-21:00</span>
+                        <span class="date-badge bg-red-500">מלאה</span>
+                    </div>
+                    <button onclick="openWaitlistPopup()" class="cta-button">הצטרף לרשימת המתנה</button>
+                </div>
             </div>
         </div>
     </section>
@@ -1595,6 +1614,31 @@
         <div class="nav-dot" data-section="instructor"></div>
     </div>
 
+    <!-- Waitlist Popup -->
+    <div id="waitlistPopup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white p-8 rounded-lg max-w-md w-full mx-4">
+            <h3 class="text-2xl font-bold mb-4">הצטרף לרשימת המתנה</h3>
+            <form id="waitlistForm" class="space-y-4">
+                <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700">שם מלא</label>
+                    <input type="text" id="name" name="name" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">מספר טלפון</label>
+                    <input type="tel" id="phone" name="phone" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+                </div>
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">אימייל</label>
+                    <input type="email" id="email" name="email" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-purple-500 focus:ring-purple-500">
+                </div>
+                <div class="flex justify-end space-x-4">
+                    <button type="button" onclick="closeWaitlistPopup()" class="px-4 py-2 text-gray-600 hover:text-gray-800">ביטול</button>
+                    <button type="submit" class="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700">שליחה</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
@@ -1713,6 +1757,43 @@
             });
 
             lazyImages.forEach(img => imageObserver.observe(img));
+        });
+
+        function openWaitlistPopup() {
+            document.getElementById('waitlistPopup').classList.remove('hidden');
+        }
+
+        function closeWaitlistPopup() {
+            document.getElementById('waitlistPopup').classList.add('hidden');
+        }
+
+        document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value
+            };
+
+            try {
+                const response = await fetch('https://hook.eu2.make.com/ndozsppnu7ot4x75qqmu3kwyk3obnk3j', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData)
+                });
+
+                if (response.ok) {
+                    alert('הפרטים נשלחו בהצלחה! ניצור איתך קשר בקרוב.');
+                    closeWaitlistPopup();
+                } else {
+                    throw new Error('שגיאה בשליחת הטופס');
+                }
+            } catch (error) {
+                alert('אירעה שגיאה בשליחת הטופס. אנא נסה שוב מאוחר יותר.');
+            }
         });
     </script>
 </body>
